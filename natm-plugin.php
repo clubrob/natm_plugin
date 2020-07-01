@@ -39,7 +39,8 @@ function natm_register_custom_post_type() {
                 ),
                 'menu_icon' => 'dashicons-store',
                 'rewrite' => array('slug' => 'listing'),
-                'capability_type' => 'listing'
+                'capability_type' => 'listing',
+                'map_meta_cap' => true
         )
     );
 }
@@ -65,23 +66,29 @@ function natm_add_custom_business_roles() {
     add_role('vendor', __('Vendor'), array(
         'read' => true, // Allows a user to read
         'read_listing' => true,
+        'edit_listing' => true, // Allows user to edit their own listings
         'edit_listings' => true, // Allows user to edit their own listings
         'edit_published_listings' => true,
-        'upload_files' => true
+        'upload_files' => true,
+        'level_1' => true
     ));
     add_role('member', __('Member'), array(
         'read' => true, // Allows a user to read
         'read_listing' => true,
+        'edit_listing' => true, // Allows user to edit their own listings
         'edit_listings' => true, // Allows user to edit their own listings
         'edit_published_listings' => true,
-        'upload_files' => true
+        'upload_files' => true,
+        'level_1' => true
     ));
     add_role('sponsor', __('Sponsor'), array(
         'read' => true, // Allows a user to read
         'read_listing' => true,
+        'edit_listing' => true, // Allows user to edit their own listings
         'edit_listings' => true, // Allows user to edit their own listings
         'edit_published_listings' => true,
-        'upload_files' => true
+        'upload_files' => true,
+        'level_1' => true
     ));
 
     $admin_role = get_role('administrator');
@@ -99,6 +106,13 @@ function natm_add_custom_business_roles() {
     $admin_role->add_cap('edit_private_listings');
     $admin_role->add_cap('edit_published_listings');
 }
+
+$role = get_role('sponsor');
+$role->add_cap('level_1');
+$role = get_role('member');
+$role->add_cap('level_1');
+$role = get_role('vendor');
+$role->add_cap('level_1');
 
 // Custom blocks
 function natm_listings_grid_block_render_callback($attributes) {
