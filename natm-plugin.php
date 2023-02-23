@@ -151,7 +151,7 @@ function natm_listings_grid_block_render_callback($attributes) {
                     %3$s
                 </p>
                 <p class="listing-description">
-                    %4$s <a class="has-small-font-size" href="%5$s">Learn More</a>
+                    %4$s <a class="" href="%5$s">Learn More</a>
                 </p>
                 <p class="listing-website">
                     %6$s
